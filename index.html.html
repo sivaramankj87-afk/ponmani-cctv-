@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PONMANI CCTV | Admin Login</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+
+        body{
+
+            min-height:100vh;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            padding:20px;
+
+            font-family:"Inter", sans-serif;
+
+            color:#fff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0,198,255,.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(0,80,255,.14),
+                    transparent 30%
+                ),
+
+                #04070c;
+
+            overflow:hidden;
+        }
+
+
+        /* BACKGROUND GLOW */
+
+        body::before{
+
+            content:"";
+
+            position:fixed;
+
+            width:500px;
+            height:500px;
+
+            border-radius:50%;
+
+            background:rgba(0,170,255,.06);
+
+            filter:blur(100px);
+
+            top:-200px;
+            right:-150px;
+
+            pointer-events:none;
+        }
+
+
+        body::after{
+
+            content:"";
+
+            position:fixed;
+
+            width:450px;
+            height:450px;
+
+            border-radius:50%;
+
+            background:rgba(0,80,255,.05);
+
+            filter:blur(100px);
+
+            bottom:-200px;
+            left:-150px;
+
+            pointer-events:none;
+        }
+
+
+        /* LOGIN CARD */
+
+        .login-card{
+
+            position:relative;
+
+            width:100%;
+            max-width:430px;
+
+            padding:40px 35px;
+
+            border-radius:28px;
+
+            background:rgba(12,18,28,.78);
+
+            border:1px solid rgba(255,255,255,.09);
+
+            backdrop-filter:blur(25px);
+
+            -webkit-backdrop-filter:blur(25px);
+
+            box-shadow:
+
+                0 30px 90px rgba(0,0,0,.55),
+
+                inset 0 1px 0 rgba(255,255,255,.05);
+
+            z-index:2;
+        }
+
+
+        /* TOP LINE */
+
+        .top-line{
+
+            width:70px;
+            height:4px;
+
+            margin:0 auto 25px;
+
+            border-radius:10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00c6ff,
+                    #0066ff
+                );
+
+            box-shadow:
+                0 0 20px rgba(0,190,255,.6);
+        }
+
+
+        /* LOGO */
+
+        .logo{
+
+            width:72px;
+            height:72px;
+
+            margin:0 auto 18px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            border-radius:21px;
+
+            font-family:"Orbitron",sans-serif;
+
+            font-size:30px;
+            font-weight:800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00c6ff,
+                    #0066ff
+                );
+
+            box-shadow:
+
+                0 0 35px rgba(0,170,255,.3),
+
+                inset 0 1px 1px rgba(255,255,255,.3);
+        }
+
+
+        /* BRAND */
+
+        .brand{
+
+            text-align:center;
+
+            margin-bottom:32px;
+        }
+
+
+        .brand h1{
+
+            font-family:"Orbitron",sans-serif;
+
+            font-size:22px;
+
+            letter-spacing:1.5px;
+
+            margin-bottom:7px;
+        }
+
+
+        .brand p{
+
+            color:#7f8b9b;
+
+            font-size:12px;
+
+            letter-spacing:1.5px;
+
+            text-transform:uppercase;
+        }
+
+
+        /* ADMIN BADGE */
+
+        .admin-badge{
+
+            width:max-content;
+
+            margin:0 auto 25px;
+
+            padding:8px 13px;
+
+            border-radius:30px;
+
+            background:rgba(0,190,255,.07);
+
+            border:1px solid rgba(0,190,255,.18);
+
+            color:#00c6ff;
+
+            font-size:11px;
+
+            font-weight:700;
+
+            letter-spacing:1px;
+        }
+
+
+        /* FIELD */
+
+        .field{
+
+            margin-bottom:18px;
+        }
+
+
+        .field label{
+
+            display:block;
+
+            margin-bottom:8px;
+
+            color:#929dad;
+
+            font-size:12px;
+
+            font-weight:500;
+        }
+
+
+        .input-box{
+
+            position:relative;
+        }
+
+
+        .input-icon{
+
+            position:absolute;
+
+            left:15px;
+            top:50%;
+
+            transform:translateY(-50%);
+
+            color:#718092;
+
+            font-size:16px;
+
+            pointer-events:none;
+        }
+
+
+        .field input{
+
+            width:100%;
+
+            height:52px;
+
+            padding:0 45px;
+
+            border-radius:14px;
+
+            outline:none;
+
+            border:1px solid rgba(255,255,255,.08);
+
+            background:rgba(255,255,255,.035);
+
+            color:#fff;
+
+            font-size:14px;
+
+            transition:.25s;
+        }
+
+
+        .field input::placeholder{
+
+            color:#536070;
+        }
+
+
+        .field input:focus{
+
+            border-color:#00b7ff;
+
+            background:rgba(0,170,255,.035);
+
+            box-shadow:
+                0 0 0 3px rgba(0,170,255,.07);
+        }
+
+
+        /* PASSWORD TOGGLE */
+
+        .password-toggle{
+
+            position:absolute;
+
+            right:14px;
+            top:50%;
+
+            transform:translateY(-50%);
+
+            background:none;
+
+            color:#718092;
+
+            font-size:16px;
+
+            cursor:pointer;
+
+            border:none;
+
+            padding:5px;
+        }
+
+
+        .password-toggle:hover{
+
+            color:#00c6ff;
+        }
+
+
+        /* LOGIN BUTTON */
+
+        .login-btn{
+
+            width:100%;
+
+            height:54px;
+
+            margin-top:8px;
+
+            border:none;
+
+            border-radius:15px;
+
+            cursor:pointer;
+
+            color:#fff;
+
+            font-size:14px;
+
+            font-weight:700;
+
+            letter-spacing:.5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00b7ff,
+                    #0066ff
+                );
+
+            box-shadow:
+
+                0 12px 30px rgba(0,110,255,.25),
+
+                inset 0 1px 1px rgba(255,255,255,.25);
+
+            transition:.25s;
+        }
+
+
+        .login-btn:hover{
+
+            transform:translateY(-2px);
+
+            box-shadow:
+
+                0 17px 40px rgba(0,110,255,.38),
+
+                0 0 25px rgba(0,180,255,.15);
+        }
+
+
+        .login-btn:active{
+
+            transform:translateY(0);
+        }
+
+
+        /* ERROR */
+
+        .error-message{
+
+            display:none;
+
+            margin-top:15px;
+
+            padding:12px;
+
+            border-radius:11px;
+
+            text-align:center;
+
+            background:rgba(255,60,80,.07);
+
+            border:1px solid rgba(255,60,80,.15);
+
+            color:#ff7583;
+
+            font-size:12px;
+        }
+
+
+        .error-message.show{
+
+            display:block;
+        }
+
+
+        /* FOOTER */
+
+        .footer{
+
+            margin-top:28px;
+
+            padding-top:20px;
+
+            border-top:1px solid rgba(255,255,255,.06);
+
+            text-align:center;
+
+            color:#596576;
+
+            font-size:11px;
+
+            line-height:1.6;
+        }
+
+
+        .footer strong{
+
+            color:#7e8a9a;
+        }
+
+
+        /* SECURITY */
+
+        .security{
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:6px;
+
+            margin-top:14px;
+
+            color:#5d6978;
+
+            font-size:10px;
+        }
+
+
+        .security-dot{
+
+            width:6px;
+            height:6px;
+
+            border-radius:50%;
+
+            background:#00d99a;
+
+            box-shadow:
+                0 0 10px rgba(0,220,150,.7);
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width:500px){
+
+            body{
+
+                padding:15px;
+            }
+
+
+            .login-card{
+
+                padding:32px 22px;
+
+                border-radius:23px;
+            }
+
+
+            .brand h1{
+
+                font-size:19px;
+            }
+
+
+            .logo{
+
+                width:65px;
+                height:65px;
+
+                font-size:27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-card">
+
+
+        <div class="top-line"></div>
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            P
+        </div>
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <h1>PONMANI CCTV</h1>
+
+            <p>Sales • Service • Solutions</p>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="admin-badge">
+
+            🔐 ADMINISTRATOR ACCESS
+
+        </div>
+
+
+        <!-- USERNAME -->
+
+        <div class="field">
+
+            <label>Admin Username</label>
+
+            <div class="input-box">
+
+                <span class="input-icon">
+                    👤
+                </span>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter admin username"
+                    autocomplete="username"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="field">
+
+            <label>Password</label>
+
+            <div class="input-box">
+
+                <span class="input-icon">
+                    🔑
+                </span>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter admin password"
+                    autocomplete="current-password"
+                >
+
+                <button
+                    class="password-toggle"
+                    type="button"
+                    onclick="togglePassword()"
+                    id="eyeButton"
+                >
+                    👁
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <button
+            class="login-btn"
+            onclick="adminLogin()"
+        >
+
+            LOGIN TO ADMIN PANEL →
+
+        </button>
+
+
+        <!-- ERROR -->
+
+        <div
+            class="error-message"
+            id="errorMessage"
+        >
+
+            Invalid username or password.
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <strong>PONMANI CCTV</strong><br>
+
+            Authorized administrator access only.
+
+        </div>
+
+
+        <div class="security">
+
+            <span class="security-dot"></span>
+
+            Secure Admin Area
+
+        </div>
+
+
+    </div>
+
+
+<script>
+
+
+/* =================================
+   ADMIN LOGIN
+================================= */
+
+function adminLogin(){
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    /*
+       TEMPORARY LOGIN
+
+       IMPORTANT:
+       This is only for testing.
+       Later we will replace this
+       with proper authentication.
+    */
+
+    const ADMIN_USERNAME = "admin";
+
+    const ADMIN_PASSWORD = "123456";
+
+
+    if(
+        username === ADMIN_USERNAME &&
+        password === ADMIN_PASSWORD
+    ){
+
+        sessionStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+
+        sessionStorage.setItem(
+            "adminUsername",
+            username
+        );
+
+
+        window.location.href =
+            "bill.html";
+
+    }
+
+    else{
+
+        const error =
+            document.getElementById("errorMessage");
+
+        error.classList.add("show");
+
+
+        document.getElementById("password").value = "";
+
+    }
+
+}
+
+
+/* =================================
+   SHOW / HIDE PASSWORD
+================================= */
+
+function togglePassword(){
+
+    const password =
+        document.getElementById("password");
+
+    const eye =
+        document.getElementById("eyeButton");
+
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+        eye.textContent = "🙈";
+
+    }
+
+    else{
+
+        password.type = "password";
+
+        eye.textContent = "👁";
+
+    }
+
+}
+
+
+/* =================================
+   ENTER KEY LOGIN
+================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            adminLogin();
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+</html>
